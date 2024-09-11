@@ -10,7 +10,7 @@ A continuación se detalla la información contenida en la tabla:
 |----------------------------|---------------------------------------------------------------------------------------------------|
 | Age                        | Edad del empleado                                                                                 |
 | Attrition                  | Empleado que abandona la empresa (0 = no, 1 = sí)                                                  |
-| BusinessTravel             | Indica la frecuencia con la que el empleado viaja                                                  |
+| BusinessTravel             | Describe la frecuencia de los viajes de negocio                                                  |
 | Department                 | Indica el departamento en que el empleado trabaja                                                  |
 | DistanceFromHome           | Distancia desde la casa del empleado hasta la empresa                                              |
 | Education                  | Nivel de educación (1 = 'Debajo de la universidad', 2 = 'Universidad', 3 = 'Licenciatura', 4 = 'Maestría', 5 = 'Doctor') |
@@ -107,6 +107,30 @@ No se encontraron registros duplicados en la columna `employee_id`, lo que confi
 
 La variable standard_hours tiene un valor constante de 8 horas en todas las filas del DataFrame. Esto indica que la variable no aporta variabilidad a los datos. Como resultado, la correlación con otras variables será indefinida (o nula) debido a que la desviación estándar de standard_hours es cero. Por esta razón, se excluirá esta variable del análisis.
 
+**Correlación**
+
+![Captura de pantalla 2024-09-11 093339](https://github.com/user-attachments/assets/5d4c6585-7291-47fd-9544-83accbe4ee4b)
+
+## Análisis de la Matriz de Correlación
+
+Observando la matriz de correlación, se destacan algunos puntos interesantes:
+
+1. **Edad y años totales de experiencia laboral (0.68)**: La correlación positiva alta entre la edad y los años de experiencia total es lógica, ya que a medida que las personas envejecen, suelen tener más años acumulados de trabajo.
+
+2. **Edad y número de empresas en las que ha trabajado (0.30)**: Existe una correlación moderada entre la edad y el número de empresas, lo que sugiere que, a medida que los empleados envejecen, es más probable que hayan cambiado de empleo varias veces.
+
+3. **Años en la empresa y años con el mismo gerente (0.77)**: Hay una correlación muy alta entre el tiempo en la empresa y el tiempo con el mismo gerente, lo que indica que, en general, los empleados tienden a permanecer con el mismo gerente a lo largo de su permanencia en la empresa.
+
+4. **Años en la empresa y años desde la última promoción (0.62)**: Una correlación significativa indica que los empleados que llevan más tiempo en la empresa también han pasado más tiempo desde su última promoción.
+
+5. **Años totales de experiencia y años en la empresa (0.63)**: Muestra que los empleados con más años de experiencia tienden a haber pasado más tiempo en la empresa actual.
+
+6. **Sin correlaciones fuertes con el salario mensual**: El salario mensual no muestra correlaciones significativas con otras variables como la experiencia, educación o nivel de trabajo, lo que podría ser un punto a investigar si se espera que el salario esté relacionado con estas características.
+
+7. **Variable sin variabilidad significativa**: La variable **"distance_from_home"** muestra correlaciones muy bajas con otras variables, lo que sugiere que no tiene mucho impacto en las demás características del conjunto de datos.
+
+### Conclusión
+En general, algunas de estas correlaciones son esperables (como la relación entre la edad y la experiencia laboral), pero la falta de correlación con el salario es un hallazgo que podría requerir una revisión más profunda, especialmente si se espera que el salario refleje la experiencia o la educación.
 
 
 ## Verificación y Conversión de Tipos de Datos
@@ -120,7 +144,7 @@ Para entrenar el modelo, es esencial que todas las variables sean de tipo numér
 | business_travel               | object  | ❌     |
 | department                    | object  | ❌     |
 | distance_from_home            | int64   | ✅     |
-| education                     | int64   | ✅     |
+| education                     | int64   | ❌     |
 | education_field               | object  | ❌     |
 | employee_id                   | int64   | ❌     |
 | gender                        | object  | ❌     |
@@ -154,18 +178,22 @@ Podemos observar todas las variables disponibles. Las que están marcadas con �
 | job_role           | object |
 | marital_status     | object |
 | over18             | object |
+| education          | int64  | 
 
 #### Detalles de las variables
 
 - **attrition**: Indica si el empleado ha abandonado la empresa. En la base de datos, esta variable contiene valores como "Yes" y "No".
+  
 - **business_travel**: Describe la frecuencia de los viajes de negocio. Los posibles valores son:
   - Travel_Rarely
   - Travel_Frequently
   - Non-Travel
+    
 - **department**: Indica el departamento en el que trabaja el empleado. Los valores posibles son:
   - Sales
   - Research & Development
   - Human Resources
+    
 - **education_field**: Muestra el área de estudio del empleado. Los valores posibles son:
   - Life Sciences
   - Medical
@@ -173,9 +201,11 @@ Podemos observar todas las variables disponibles. Las que están marcadas con �
   - Technical Degree
   - Human Resources
   - Other
+    
 - **gender**: Indica el género del empleado. Los posibles valores son:
   - Female
   - Male
+    
 - **job_role**: Describe el rol del empleado en la empresa. Los valores posibles son:
   - Healthcare Representative
   - Research Scientist
@@ -186,14 +216,75 @@ Podemos observar todas las variables disponibles. Las que están marcadas con �
   - Manufacturing Director
   - Sales Representative
   - Manager
+    
 - **marital_status**: Indica el estado civil del empleado. Los valores posibles son:
   - Married
   - Single
   - Divorced
-- **over18**: Indica si el empleado es mayor de 18 años. Los posibles valores son:
-  - Y
-- **employee_id**: Es un identificador único del empleado. Aunque actualmente es de tipo entero (`int64`), es mejor manejarlo como `object` para evitar confusiones
+    
+- **over18**: Esta variable indica si el empleado es mayor de 18 años, con el único valor posible siendo "Y". Dado que todos los empleados en el conjunto de datos son mayores de 18 años y no existe variabilidad en esta variable, no aporta información útil para el análisis. Por esta razón, se excluirá del análisis.
+- **employee_id**: Es un identificador único del empleado. Aunque actualmente es de tipo entero (`int64`), es mejor manejarlo como `String` para evitar confusiones
+  
+-  **education**: Nivel de educación (1 = 'Debajo de la universidad', 2 = 'Universidad', 3 = 'Licenciatura', 4 = 'Maestría', 5 = 'Doctorado'). Aunque está codificada numéricamente, esta variable representa categorías ordinales, no valores continuos. Mantenerla así puede llevar a que el modelo asuma una relación lineal entre los niveles educativos, lo cual no es adecuado. Esto podría generar interpretaciones incorrectas, ya que el modelo podría considerar que la diferencia entre los niveles es constante. Para evitar estos problemas, es mejor convertir los niveles educativos en variables dummy, donde cada nivel se represente con un valor binario (0 o 1), facilitando una interpretación más precisa
 
+# Estructura de las Columnas del DataFrame
+
+Se han creado variables dummy para las variables categóricas tipo `object`, omitiendo una categoría por cada variable para evitar la multicolinealidad. A continuación se muestra la estructura de las columnas del DataFrame resultante y las categorías omitidas:
+
+## Columnas del DataFrame Resultante
+
+| No. | Column                              | Non-Null Count | Dtype   |
+|-----|-------------------------------------|----------------|---------|
+| 0   | age                                 | 4410 non-null   | int64   |
+| 1   | distance_from_home                  | 4410 non-null   | int64   |
+| 2   | employee_id                         | 4410 non-null   | object  |
+| 3   | job_level                           | 4410 non-null   | int64   |
+| 4   | monthly_income                      | 4410 non-null   | int64   |
+| 5   | num_companies_worked                | 4410 non-null   | float64 |
+| 6   | percent_salary_hike                 | 4410 non-null   | int64   |
+| 7   | stock_option_level                  | 4410 non-null   | int64   |
+| 8   | total_working_years                 | 4410 non-null   | float64 |
+| 9   | training_times_last_year            | 4410 non-null   | int64   |
+| 10  | years_at_company                    | 4410 non-null   | int64   |
+| 11  | years_since_last_promotion          | 4410 non-null   | int64   |
+| 12  | years_with_curr_manager             | 4410 non-null   | int64   |
+| 13  | business_Travel_Frequently          | 4410 non-null   | int64   |
+| 14  | business_Travel_Rarely              | 4410 non-null   | int64   |
+| 15  | department_Research & Development   | 4410 non-null   | int64   |
+| 16  | department_Sales                    | 4410 non-null   | int64   |
+| 17  | education_field_Human Resources     | 4410 non-null   | int64   |
+| 18  | education_field_Life Sciences       | 4410 non-null   | int64   |
+| 19  | education_field_Marketing           | 4410 non-null   | int64   |
+| 20  | education_field_Medical             | 4410 non-null   | int64   |
+| 21  | education_field_Technical Degree    | 4410 non-null   | int64   |
+| 22  | job_role_Healthcare Representative  | 4410 non-null   | int64   |
+| 23  | job_role_Laboratory Technician      | 4410 non-null   | int64   |
+| 24  | job_role_Manager                    | 4410 non-null   | int64   |
+| 25  | job_role_Manufacturing Director     | 4410 non-null   | int64   |
+| 26  | job_role_Research Director          | 4410 non-null   | int64   |
+| 27  | job_role_Research Scientist         | 4410 non-null   | int64   |
+| 28  | job_role_Sales Executive            | 4410 non-null   | int64   |
+| 29  | job_role_Sales Representative       | 4410 non-null   | int64   |
+| 30  | marital_status_Married              | 4410 non-null   | int64   |
+| 31  | marital_status_Single               | 4410 non-null   | int64   |
+| 32  | gender_Male                         | 4410 non-null   | int64   |
+| 33  | attrition_Yes                       | 4410 non-null   | int64   |
+| 34  | education_Doctorado                 | 4410 non-null   | int64   |
+| 35  | education_Licenciatura              | 4410 non-null   | int64   |
+| 36  | education_Maestría                  | 4410 non-null   | int64   |
+| 37  | education_Universidad               | 4410 non-null   | int64   |
+
+## Categorías Omitidas
+
+- **business_travel**: 'Non-Travel'
+- **department**: 'Human Resources'
+- **education_field**: 'Other'
+- **job_role**: 'Human Resources'
+- **marital_status**: 'Divorced'
+- **gender**: 'Female'
+- **attrition**: 'No'
+
+Estas categorías han sido omitidas para evitar la multicolinealidad, ya que su presencia puede ser inferida a partir de las demás variables dummy.
 
 
 
