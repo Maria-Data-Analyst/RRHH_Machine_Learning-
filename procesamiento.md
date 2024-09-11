@@ -101,3 +101,99 @@ Se realizó una búsqueda de valores duplicados en la columna `employee_id`, ya 
 
 No se encontraron registros duplicados en la columna `employee_id`, lo que confirma que cada ID de empleado es único en el conjunto de datos.
 
+## Identificar inconsistencias y correlaciones
+
+![image](https://github.com/user-attachments/assets/e988c65a-2fc5-4cc9-b164-5a60603141a5)
+
+La variable standard_hours tiene un valor constante de 8 horas en todas las filas del DataFrame. Esto indica que la variable no aporta variabilidad a los datos. Como resultado, la correlación con otras variables será indefinida (o nula) debido a que la desviación estándar de standard_hours es cero. Por esta razón, se excluirá esta variable del análisis.
+
+
+
+## Verificación y Conversión de Tipos de Datos
+
+Para entrenar el modelo, es esencial que todas las variables sean de tipo numérico. Por lo tanto, primero debemos revisar los tipos de datos actuales en nuestro conjunto de datos y determinar cuáles necesitan ser convertidos o procesados para cumplir con los requisitos del modelo.
+
+| Variables                      | Dtype   | Status |
+|-------------------------------|---------|--------|
+| age                           | int64   | ✅     |
+| attrition                     | object  | ❌     |
+| business_travel               | object  | ❌     |
+| department                    | object  | ❌     |
+| distance_from_home            | int64   | ✅     |
+| education                     | int64   | ✅     |
+| education_field               | object  | ❌     |
+| employee_id                   | int64   | ❌     |
+| gender                        | object  | ❌     |
+| job_level                     | int64   | ✅     |
+| job_role                      | object  | ❌     |
+| marital_status                | object  | ❌     |
+| monthly_income                | int64   | ✅     |
+| num_companies_worked          | float64 | ✅     |
+| over18                        | object  | ❌     |
+| percent_salary_hike           | int64   | ✅     |
+| standard_hours                | int64   | ✅     |
+| stock_option_level            | int64   | ✅     |
+| total_working_years           | float64 | ✅     |
+| training_times_last_year      | int64   | ✅     |
+| years_at_company              | int64   | ✅     |
+| years_since_last_promotion    | int64   | ✅     |
+| years_with_curr_manager       | int64   | ✅     |
+
+Podemos observar todas las variables disponibles. Las que están marcadas con ❌ indican que se necesita realizar una conversión de tipo de dato.
+
+### Variables que requieren conversión de tipo de dato
+
+| Variable           | Dtype  |
+|--------------------|--------|
+| attrition          | object |
+| business_travel    | object |
+| department         | object |
+| education_field    | object |
+| employee_id        | int64  |
+| gender             | object |
+| job_role           | object |
+| marital_status     | object |
+| over18             | object |
+
+#### Detalles de las variables
+
+- **attrition**: Indica si el empleado ha abandonado la empresa. En la base de datos, esta variable contiene valores como "Yes" y "No".
+- **business_travel**: Describe la frecuencia de los viajes de negocio. Los posibles valores son:
+  - Travel_Rarely
+  - Travel_Frequently
+  - Non-Travel
+- **department**: Indica el departamento en el que trabaja el empleado. Los valores posibles son:
+  - Sales
+  - Research & Development
+  - Human Resources
+- **education_field**: Muestra el área de estudio del empleado. Los valores posibles son:
+  - Life Sciences
+  - Medical
+  - Marketing
+  - Technical Degree
+  - Human Resources
+  - Other
+- **gender**: Indica el género del empleado. Los posibles valores son:
+  - Female
+  - Male
+- **job_role**: Describe el rol del empleado en la empresa. Los valores posibles son:
+  - Healthcare Representative
+  - Research Scientist
+  - Sales Executive
+  - Human Resources
+  - Research Director
+  - Laboratory Technician
+  - Manufacturing Director
+  - Sales Representative
+  - Manager
+- **marital_status**: Indica el estado civil del empleado. Los valores posibles son:
+  - Married
+  - Single
+  - Divorced
+- **over18**: Indica si el empleado es mayor de 18 años. Los posibles valores son:
+  - Y
+- **employee_id**: Es un identificador único del empleado. Aunque actualmente es de tipo entero (`int64`), es mejor manejarlo como `object` para evitar confusiones
+
+
+
+
