@@ -286,5 +286,5 @@ Se han creado variables dummy para las variables categóricas tipo `object`, omi
 
 Estas categorías han sido omitidas para evitar la multicolinealidad, ya que su presencia puede ser inferida a partir de las demás variables dummy.
 
-
+## Crear nuevas variables 
 
