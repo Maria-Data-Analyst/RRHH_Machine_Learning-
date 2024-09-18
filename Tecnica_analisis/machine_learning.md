@@ -27,17 +27,12 @@ La aplicación de estas técnicas de balanceo permitirá que los modelos sean m�
 
 ## Proceso de Modelado
 
-### `DecisionTreeClassifier`.
-Utilizaremos la tecnica de Undersampling para balancear el conjunto de datos 
-- **Evaluar la Eficiencia del Modelo:** Determinaremos qué tan bien se desempeña el modelo en la predicción de la renuncia de empleados.
-- **Visualizar la Importancia de las Variables:** Este modelo nos ayudará a identificar qué características tienen mayor impacto en la decisión de un empleado de abandonar la empresa.
+### 1. DecisionTreeClassifie con balanceo tipo undersampling
 
-Este enfoque nos proporcionará una base sólida para analizar la relevancia de las variables y optimizar nuestros modelos de machine learning para obtener predicciones más precisas.
+![Captura de pantalla 2024-09-18 170403](https://github.com/user-attachments/assets/600b03ae-c0f6-4fac-b330-d49c98d72235)
 
-###  Evaluar la Eficiencia del Modelo `DecisionTreeClassifier`.
 
-![Captura de pantalla 2024-09-17 151636](https://github.com/user-attachments/assets/3249f6f7-5c9f-43d9-9e21-ddb1f8626e5c)
-
+###  Evaluar la Eficiencia del Modelo `DecisionTreeClassifier`
 Observamos métricas muy favorables en el conjunto de prueba, pero es crucial verificar si el modelo está sobreajustado a los datos. El objetivo de este análisis es garantizar que el modelo no solo funcione bien en los datos de entrenamiento, sino que también tenga la capacidad de generalizar a datos nuevos y desconocidos en escenarios reales. Si el modelo está sobreajustado, su desempeño en producción podría ser deficiente, lo que conllevaría a decisiones inadecuadas o predicciones poco confiables, afectando negativamente los resultados y la toma de decisiones basadas en esos datos
 
 
@@ -45,10 +40,10 @@ Observamos métricas muy favorables en el conjunto de prueba, pero es crucial ve
 |------------------------------------|-------------------------------------------------|
 | Exactitud en los datos de entrenamiento | 1.00                                            |
 | Exactitud en los datos de prueba   | 0.87                                            |
-| Profundidad del árbol              | 21                                              |
-| Número de divisiones               | 193                                             |
-| Número de hojas                    | 194                                             |
-| Puntuaciones de validación cruzada | [0.90175439, 0.86666667, 0.91901408, 0.88732394, 0.90140845] |
+| Profundidad del árbol              | 17                                              |
+| Número de divisiones               | 214                                             |
+| Número de hojas                    | 215                                             |
+| Puntuaciones de validación cruzada | [0.89122807 0.89473684 0.91197183 0.9084507  0.88380282] |
 | Exactitud media de validación cruzada | 0.90                                            |
 
 Observamos una precisión del 100 % en el conjunto de entrenamiento y un 87 % en el conjunto de prueba, lo que sugiere que el modelo podría estar sobreajustado. Aunque las métricas en el conjunto de prueba siguen siendo relativamente buenas, la presencia de sobreajuste es motivo de preocupación por varias razones:
@@ -68,9 +63,10 @@ Para abordar este problema, utilizamos la validación cruzada, una técnica que 
 ### En resumen:
 Aunque el modelo parece funcionar bien en algunos casos, el riesgo de sobreajuste puede limitar su desempeño en situaciones del mundo real, lo que podría llevar a predicciones inexactas o inestables.
 
-## Modelo con Parámetros Ajustados
+## 2. DecisionTreeClassifie con balanceo tipo undersampling con parámetros del arbol ajustados
 
-![image](https://github.com/user-attachments/assets/a86ff487-00ca-49e1-9420-c1b121c780a6)
+![Captura de pantalla 2024-09-18 170902](https://github.com/user-attachments/assets/40e6f2a9-6e73-41c9-9728-9801b15171b7)
+
 
 
 Tras ajustar los parámetros del árbol de decisión, los resultados obtenidos son los siguientes:
@@ -80,47 +76,50 @@ Tras ajustar los parámetros del árbol de decisión, los resultados obtenidos s
 | **Profundidad del árbol**                | 10        |
 | **Número de divisiones**                 | 127       |
 | **Número de hojas**                     | 128       |
-| **Exactitud en los datos de entrenamiento** | 0.87      |
-| **Exactitud en los datos de prueba**     | 0.72      |
-| **Exactitud en el conjunto de prueba**   | 0.72      |
-| **Exactitud media de validación cruzada** | 0.75      |
-| **Puntuaciones de validación cruzada**   | [0.76, 0.74, 0.73, 0.74, 0.74, 0.75, 0.77] |
+| **Exactitud en los datos de entrenamiento** | 0.86      |
+| **Exactitud en el conjunto de prueba**   | 0.73     |
+| **Exactitud media de validación cruzada** | 0.71      |
+| **Puntuaciones de validación cruzada**   | [0.71078431 0.67980296 0.69950739 0.75862069 0.69458128 0.71921182
+ 0.71428571] |
 
 #### Análisis del Modelo
 
 1. **Reducción del Sobreajuste:**
-   - **Exactitud en Entrenamiento vs. Prueba:** La exactitud en el conjunto de entrenamiento ha disminuido a 0.87, mientras que en el conjunto de prueba es 0.72. Aunque esto indica una reducción en el sobreajuste comparado con el modelo anterior, donde la exactitud de entrenamiento era del 100%, la diferencia aún es notable. El modelo sigue teniendo un desempeño mucho mejor en los datos de entrenamiento que en los de prueba.
+   - **Exactitud en Entrenamiento vs. Prueba:** La exactitud en el conjunto de entrenamiento ha disminuido a 0.86, mientras que en el conjunto de prueba es 0.73. Aunque esto indica una reducción en el sobreajuste comparado con el modelo anterior, donde la exactitud de entrenamiento era del 100%, la diferencia aún es notable. El modelo sigue teniendo un desempeño mucho mejor en los datos de entrenamiento que en los de prueba.
 
 2. **Desempeño en el Conjunto de Prueba:**
-   - **Exactitud y Métricas:** La exactitud de 0.72 en el conjunto de prueba muestra una mejora en comparación con el modelo anterior, pero sigue siendo una señal de que el modelo podría no estar generalizando de manera óptima. Las métricas de precisión y recall para ambas clases están relativamente equilibradas, pero no sobresalientes, lo que sugiere que el modelo podría no ser suficientemente robusto.
+   - **Exactitud y Métricas:** La exactitud de 0.73 en el conjunto de prueba muestra una mejora en comparación con el modelo anterior, pero sigue siendo una señal de que el modelo podría no estar generalizando de manera óptima. Las métricas de precisión y recall para ambas clases están relativamente equilibradas, pero no sobresalientes, lo que sugiere que el modelo podría no ser suficientemente robusto.
 
 3. **Validación Cruzada:**
-   - **Consistencia del Modelo:** Las puntuaciones de validación cruzada varían entre 0.73 y 0.77, con una media de 0.75. Aunque esto indica cierta consistencia en el rendimiento, la diferencia con la exactitud en el conjunto de prueba muestra que aún podría haber problemas con la capacidad de generalización del modelo.
+   - **Consistencia del Modelo:** Las puntuaciones de validación cruzada varían entre 0.69 y 0.71, con una media de 0.71. Aunque esto indica cierta consistencia en el rendimiento, la diferencia con la exactitud en el conjunto de prueba muestra que aún podría haber problemas con la capacidad de generalización del modelo.
 
 4. **Evaluación General:**
    - **Generalización:** Aunque hemos reducido el sobreajuste, el modelo todavía muestra un desempeño inferior en datos no vistos. Esto sugiere que el modelo puede tener dificultades para generalizar adecuadamente a datos nuevos, y su desempeño en un entorno real podría no ser confiable.
 
 
-### Balanceando el conjunto de datos con Smote 
+### 3. DecisionTreeClassifie Balanceando el conjunto de datos con Smote con parámetros del arbol ajustados
 
-### Resultados del Modelo
+
+![Captura de pantalla 2024-09-18 171551](https://github.com/user-attachments/assets/e12ff75d-23d4-4b19-9fe7-8a9013bb7ae8)
+
+
 
 | Métrica                           | Valor                                                                 |
 |-----------------------------------|-----------------------------------------------------------------------|
-| Exactitud en el conjunto de entrenamiento | 0.91                                                                  |
-| Exactitud en el conjunto de prueba        | 0.78                                                                  |
-| Puntuaciones de validación cruzada        | [0.80947776, 0.87911025, 0.87717602, 0.87512101, 0.8857696]         |
-| Exactitud media de validación cruzada     | 0.87                                                                  |
+| Exactitud en el conjunto de entrenamiento | 0.89                                                                |
+| Exactitud en el conjunto de prueba        | 0.76                                                                  |
+| Puntuaciones de validación cruzada        |[0.80947776 0.86266925 0.86073501 0.84607938 0.86737657]|
+| Exactitud media de validación cruzada     | 0.85                                                                  |
 
 
 **Desempeño del Modelo:**
 
-- **Exactitud en Entrenamiento vs. Prueba:** La exactitud en el conjunto de entrenamiento es del 91%, mientras que en el conjunto de prueba es del 78%. Esta diferencia significativa indica que el modelo puede estar sobreajustado a los datos de entrenamiento, mostrando un buen desempeño en esos datos pero no generalizando tan bien a nuevos datos.
+- **Exactitud en Entrenamiento vs. Prueba:** La exactitud en el conjunto de entrenamiento es del 89%, mientras que en el conjunto de prueba es del 76%. Esta diferencia significativa indica que el modelo puede estar sobreajustado a los datos de entrenamiento, mostrando un buen desempeño en esos datos pero no generalizando tan bien a nuevos datos.
 
 **Precision y Recall:**
 
-- **Clase Mayoritaria (0):** La precisión para la clase mayoritaria (0) es alta (0.94), y el recall es de 0.79. Esto indica que el modelo está haciendo un buen trabajo en identificar correctamente la clase mayoritaria.
-- **Clase Minoritaria (1):** La precisión para la clase minoritaria (1) es baja (0.40), pero el recall es relativamente alto (0.72). Esto sugiere que, aunque el modelo tiene dificultades para identificar correctamente los casos de la clase minoritaria, está mejorando su capacidad para detectarlos en comparación con el modelo anterior.
+- **Clase Mayoritaria (0):** La precisión para la clase mayoritaria (0) es alta (0.93), y el recall es de 0.78. Esto indica que el modelo está haciendo un buen trabajo en identificar correctamente la clase mayoritaria.
+- **Clase Minoritaria (1):** La precisión para la clase minoritaria (1) es baja (0.36), junto con el recall  (0.67). Esto sugiere que,  el modelo sigue teniendo dificultades para identificar correctamente los casos de la clase minoritaria e inclusive más que el modelo anterior 
 
 **Validación Cruzada:**
 
@@ -130,22 +129,22 @@ Tras ajustar los parámetros del árbol de decisión, los resultados obtenidos s
 
 ## Modelos de Regresión Logística: Análisis y Resultados
 
-### `LogisticRegression` con Undersampling
-Comenzamos balanceando el dataset usando **undersampling**, obteniendo los siguientes resultados:
+### 4. `LogisticRegression` con Undersampling
 
-![Captura de pantalla](https://github.com/user-attachments/assets/8065582d-5b39-48f3-964c-c11dd48ecd2c)
+
+![Captura de pantalla 2024-09-18 172748](https://github.com/user-attachments/assets/7b183156-e8a4-4602-a6dd-563361342b5f)
 
 .**Exactitud del Modelo:**
 - Conjunto de entrenamiento: **0.74**
-- Conjunto de prueba: **0.66**
+- Conjunto de prueba: **0.65**
 
 **Análisis del Desempeño del Modelo:**
-Este modelo sigue presentando problemas de sobreajuste, lo que indica que el modelo no se ajusta bien a los datos de prueba. Aunque el conjunto de entrenamiento alcanza una exactitud del 74%, en el conjunto de prueba la precisión baja al 66%. Esto sugiere que el modelo podría no estar generalizando bien y podría estar sobreentrenado para los datos balanceados con undersampling.
+Este modelo sigue presentando problemas de sobreajuste, lo que indica que el modelo no se ajusta bien a los datos de prueba. Aunque el conjunto de entrenamiento alcanza una exactitud del 74%, en el conjunto de prueba la precisión baja al 65%. Esto sugiere que el modelo podría no estar generalizando bien y podría estar sobreentrenado para los datos balanceados con undersampling.
 
 ---
 
-### `LogisticRegression` con SMOTE
-Después aplicamos la técnica de **SMOTE (Synthetic Minority Over-sampling Technique)** para equilibrar las clases del dataset, obteniendo los siguientes resultados:
+### 5. LogisticRegression con balanceo tipo undersampling con variables seleccionadas  de DecisionTreeClassifie
+
 
 ![Captura de pantalla](https://github.com/user-attachments/assets/c0521eb5-57d3-4015-aaf3-b75b97201deb)
 
