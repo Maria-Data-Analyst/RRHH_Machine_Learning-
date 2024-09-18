@@ -286,5 +286,113 @@ Se han creado variables dummy para las variables categóricas tipo `object`, omi
 
 Estas categorías han sido omitidas para evitar la multicolinealidad, ya que su presencia puede ser inferida a partir de las demás variables dummy.
 
-## Crear nuevas variables 
+## Crear nuevas variables
+
+He convertido a formato dummy las variables categóricas, pero aún quedan las variables numéricas continuas que no han sido transformadas. Esto puede generar un sesgo en los modelos, ya que las variables continuas pueden tener más peso debido a sus rangos más amplios, en comparación con las variables dummy, que solo toman valores de 0 y 1.
+
+Además, al no segmentar estas variables continuas, no podemos identificar con precisión qué rangos de valores están más relacionados con la probabilidad de que los empleados renuncien. Para abordar este problema, utilizaremos boxplots para analizar la distribución de cada variable continua y establecer límites de segmentos, que luego transformaremos en variables dummy.
+Los segmentos que se convertiran a dummy son los siguientes 
+:
+ **`age`**
+- **18 - 25**: 486 empleados
+- **26 - 35**: 1908 empleados
+- **36 - 48**: 1497 empleados
+- **49 - 60**: 519 empleados
+
+**`distance_from_home`**
+- **Cerca**: 3078 empleados
+- **Intermedio**: 720 empleados
+- **Lejos**: 612 empleados
+
+**`years_at_company`**
+- **0 - 3**: 1.410 empleados
+- **4 - 10**: 2.262 empleados
+- **11 - 20**: 540 empleados
+- **20+**: 198 empleados
+
+**`monthly_income`**
+- **10k - 40k**: 1.629 empleados
+- **40k - 70k**: 1.476 empleados
+- **70k - 120k**: 720 empleados
+- **120k - 200k**: 585 empleados
+
+**`percent_salary_hike`**
+- **11 - 14**: 2.454 empleados
+- **15 - 18**: 1.050 empleados
+- **19 - 21**: 537 empleados
+- **22 - 25**: 369 empleados
+
+**`num_companies_worked`**
+- **0 - 2**: 2601 empleados
+- **3 - 5**: 1076 empleados
+- **6 - 8**: 577 empleados
+- **9**: 156 empleados
+
+**`total_working_years`**
+- **0 - 7**: 1565 empleados
+- **17 - 30**: 817 empleados
+- **31 - 40**: 138 empleados
+- **8 - 16**: 1890 empleados
+
+**years_with_curr_manager**
+- **0 - 4**:      2769 empleados
+- **13 - 17**:      99 empleados
+- **5 - 8**:     1149 empleados
+- **9 - 12**:      393 empleados
+            
+| No. | Variable                                    | Non-null Count | Dtype |
+|-----|---------------------------------------------|----------------|-------|
+| 1  | rango_num_companies_0_2                    | 4410           | int64 |
+| 2  | rango_num_companies_3_5                    | 4410           | int64 |
+| 3  | rango_num_companies_6_8                    | 4410           | int64 |
+| 4  | rango_num_companies_9                      | 4410           | int64 |
+| 5  | rango_experiencia_0_7                      | 4410           | int64 |
+| 6  | rango_experiencia_17_30                    | 4410           | int64 |
+| 7  | rango_experiencia_31_40                    | 4410           | int64 |
+| 8  | rango_experiencia_8_16                     | 4410           | int64 |
+| 9  | rango_age_18_25                           | 4410           | int64 |
+| 10  | rango_age_26_35                           | 4410           | int64 |
+| 11  | rango_age_36_48                           | 4410           | int64 |
+| 12  | rango_age_49_60                           | 4410           | int64 |
+| 13  | rango_ultimo_ascenso_0_3                   | 4410           | int64 |
+| 14  | rango_ultimo_ascenso_12_15                 | 4410           | int64 |
+| 15  | rango_ultimo_ascenso_4_7                   | 4410           | int64 |
+| 16  | rango_ultimo_ascenso_8_11                  | 4410           | int64 |
+| 17  | rango_mismo_jefe_0_4                       | 4410           | int64 |
+| 18  | rango_mismo_jefe_13_17                     | 4410           | int64 |
+| 19  | rango_mismo_jefe_5_8                       | 4410           | int64 |
+| 20  | rango_mismo_jefe_9_12                      | 4410           | int64 |
+| 21  | rango_años_en_la_empresa_0_3               | 4410           | int64 |
+| 22  | rango_años_en_la_empresa_11_20             | 4410           | int64 |
+| 23  | rango_años_en_la_empresa_20+               | 4410           | int64 |
+| 24  | rango_años_en_la_empresa_4_10              | 4410           | int64 |
+| 25  | rango_ingresos_10k_40k                    | 4410           | int64 |
+| 26  | rango_ingresos_120k_200k                  | 4410           | int64 |
+| 27  | rango_ingresos_40k_70k                    | 4410           | int64 |
+| 28  | rango_ingresos_70k_120k                   | 4410           | int64 |
+| 29  | rango_distancia_cerca                     | 4410           | int64 |
+| 30  | rango_distancia_intermedio                | 4410           | int64 |
+| 31  | rango_distancia_lejos                     | 4410           | int64 |
+| 32  | rango_percent_salary_11_14                | 4410           | int64 |
+| 33  | rango_percent_salary_15_18                | 4410           | int64 |
+| 34  | rango_percent_salary_19_21                | 4410           | int64 |
+| 35  | rango_percent_salary_22_25                | 4410           | int64 |
+
+Se omitieron para el analisis las siguientes variables debido a su debil correlación con la varibale attrition la cual es la que intentaremos predecir en los modelos 
+     
+| No.| Variable                        | Punto-Biserial Correlation | 
+|----|---------------------------------|----------------|
+| 1  |job_level                        |-0.010290          |
+| 2  | stock_option_level              |  -0.006839        | 
+| 3  | years_since_last_promotion      | -0.033019         |
+
+
+Con las variables listas empezaremos la [técnica de análisis](https://github.com/Maria-Data-Analyst/RRHH_Machine_Learning-/blob/Consultas-Query/Tecnica_analisis/machine_learning.md)
+
+Para ver todo el procesamiento y gráficas puede consultar el siguiente [NoteBook]()
+    
+     
+        
+       
+      
 
