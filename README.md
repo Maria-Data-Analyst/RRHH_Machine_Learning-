@@ -37,7 +37,7 @@ Este proyecto se centra en la aplicación de un modelo de machine learning super
   1. [**Hito 2 del Proyecto 1**](https://github.com/Maria-Data-Analyst/Segmentacion/blob/main/cohorte.md)
     
      
-  2. [**Hitos 2 y 3 del Proyecto 2**]
+  2. **Hitos 2 y 3 del Proyecto 2**
      - [Hito 2](https://github.com/Maria-Data-Analyst/Proyecto-Validacion-Hipotesis/blob/main/Tecnica-Analisis/prueba_significancia.md)
      - [Hito 3](https://github.com/Maria-Data-Analyst/Proyecto-Validacion-Hipotesis/blob/main/Tecnica-Analisis/regresion_lineal.md)
        
