@@ -1,6 +1,7 @@
 # Procesamiento y Preparación de la Base de Datos
 
 En esta sección, nos familiarizaremos con las  variables disponibles para entender con qué datos contamos.
+aquí puedes descargar el dataset que se uso para el proyecto: [Dataset](https://drive.google.com/file/d/1sbNpmhSZ6AtknqU4kJs18_ls91UThNBX/view)
 
 ## Descripción de Variables
 
@@ -387,9 +388,13 @@ Se omitieron para el analisis las siguientes variables debido a su debil correla
 | 3  | years_since_last_promotion      | -0.033019         |
 
 
+
+
 Con las variables listas empezaremos la [técnica de análisis](https://github.com/Maria-Data-Analyst/RRHH_Machine_Learning-/blob/Consultas-Query/Tecnica_analisis/machine_learning.md)
 
-Para ver todo el procesamiento y gráficas puede consultar el siguiente [NoteBook]()
+Para ver todo el procesamiento y gráficas puede consultar el siguiente [NoteBook](https://github.com/Maria-Data-Analyst/RRHH_Machine_Learning-/blob/main/procesamiento/procesamiento_rrhh.ipynb)
+
+[Técnicas de análisis](https://github.com/Maria-Data-Analyst/RRHH_Machine_Learning-/blob/main/Tecnica_analisis/machine_learning.md)
     
      
         
