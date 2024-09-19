@@ -8,7 +8,7 @@ El objetivo de este proyecto es entrenar varios modelos de machine learning para
 El dataset utilizado contiene información de:
 - **3.699 empleados** que aún están en la compañía.
 - **711 empleados** que ya han renunciado.
-[Aquí](https://drive.google.com/file/d/13lF4uaw90hT75keSHdMYXUYIOPQtRegr/view?usp=sharing) puede descargar el archivo CSV utilizado en los modelos, este archivo es el resultado del procesamiento previo
+- [Aquí](https://drive.google.com/file/d/13lF4uaw90hT75keSHdMYXUYIOPQtRegr/view?usp=sharing) puede descargar el archivo CSV utilizado en los modelos, este archivo es el resultado del procesamiento previo
 
 ## Balanceo del Conjunto de Datos
 
