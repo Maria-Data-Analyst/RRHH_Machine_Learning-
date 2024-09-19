@@ -8,6 +8,7 @@ El objetivo de este proyecto es entrenar varios modelos de machine learning para
 El dataset utilizado contiene información de:
 - **3.699 empleados** que aún están en la compañía.
 - **711 empleados** que ya han renunciado.
+[Aquí](https://drive.google.com/file/d/13lF4uaw90hT75keSHdMYXUYIOPQtRegr/view?usp=sharing) puede descargar el archivo CSV utilizado en los modelos, este archivo es el resultado del procesamiento previo
 
 ## Balanceo del Conjunto de Datos
 
@@ -27,7 +28,8 @@ La aplicación de estas técnicas de balanceo permitirá que los modelos sean m�
 
 ## Proceso de Modelado
 
-### 1. DecisionTreeClassifie con balanceo tipo undersampling
+### 1. DecisionTreeClassifier con balanceo tipo undersampling
+Para ver el código y más información sobre los modelos con DecisionTreeClassifier consultar el siguiente [Notebook](https://github.com/Maria-Data-Analyst/RRHH_Machine_Learning-/blob/main/Tecnica_analisis/DecisionTreeClassifier.ipynb)
 
 ![Captura de pantalla 2024-09-18 170403](https://github.com/user-attachments/assets/600b03ae-c0f6-4fac-b330-d49c98d72235)
 
@@ -67,8 +69,6 @@ Aunque el modelo parece funcionar bien en algunos casos, el riesgo de sobreajust
 
 ![Captura de pantalla 2024-09-18 170902](https://github.com/user-attachments/assets/40e6f2a9-6e73-41c9-9728-9801b15171b7)
 
-
-
 Tras ajustar los parámetros del árbol de decisión, los resultados obtenidos son los siguientes:
 
 | **Métrica**                             | **Valor** |
@@ -96,9 +96,7 @@ Tras ajustar los parámetros del árbol de decisión, los resultados obtenidos s
 
 ### 3. DecisionTreeClassifie Balanceando el conjunto de datos con Smote con parámetros del arbol ajustados
 
-
 ![Captura de pantalla 2024-09-18 171551](https://github.com/user-attachments/assets/e12ff75d-23d4-4b19-9fe7-8a9013bb7ae8)
-
 
 
 | Métrica                           | Valor                                                                 |
@@ -125,6 +123,7 @@ Tras ajustar los parámetros del árbol de decisión, los resultados obtenidos s
 
 
 ## Modelos de Regresión Logística: Análisis y Resultados
+Para ver el código y más informacion sobre los modelos con LogisticRegression puede consultar el siguiente [Notebook](https://github.com/Maria-Data-Analyst/RRHH_Machine_Learning-/blob/main/Tecnica_analisis/regresion_logistica_rrhh.ipynb)
 
 ### 4. `LogisticRegression` con SMOTE 
 
