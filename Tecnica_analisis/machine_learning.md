@@ -129,36 +129,69 @@ Tras ajustar los parámetros del árbol de decisión, los resultados obtenidos s
 
 ## Modelos de Regresión Logística: Análisis y Resultados
 
-### 4. `LogisticRegression` con Undersampling
+### 4. `LogisticRegression` con SMOTE 
+
+![Captura de pantalla 2024-09-19 153322](https://github.com/user-attachments/assets/599302b1-6ef3-4b99-9488-33896401d63b)
+
+.**Exactitud del Modelo:**
+- Conjunto de entrenamiento: **0.82**
+- Conjunto de prueba: **0.80**
+
+**Análisis del Desempeño del Modelo:**
+El modelo muestra una consistencia notable entre los conjuntos de entrenamiento y prueba, con una exactitud del 82% en el entrenamiento y 80% en el conjunto de prueba. Esto indica que el modelo generaliza bien y no presenta un sobreajuste significativo.
+
+Sin embargo, al observar el rendimiento por clases, se nota una diferencia considerable en las métricas entre la clase 0 y la clase 1. Para la clase 0, que representa a los empleados que no han renunciado, el modelo alcanza una precisión de 0.89 y un F1-score de 0.88, lo que muestra que el modelo es muy eficaz en identificar correctamente esta clase.
+
+Por otro lado, para la clase 1, que representa a los empleados que han renunciado, la precisión es 0.38 y el F1-score 0.41, lo que indica que el modelo tiene dificultades para clasificar correctamente a estos empleados. Este es un aspecto crítico a mejorar, ya que la capacidad para identificar correctamente a los empleados que renuncian es uno de los objetivos clave del modelo.
+
+### 5.`LogisticRegression` con datos balanceados mediante SMOTE y variables seleccionadas 
+
+![Captura de pantalla 2024-09-19 161422](https://github.com/user-attachments/assets/571d64e8-ca60-47be-bfb9-b320332c1c02)
 
 
-![Captura de pantalla 2024-09-18 172748](https://github.com/user-attachments/assets/7b183156-e8a4-4602-a6dd-563361342b5f)
+.**Exactitud del Modelo:**
+- Conjunto de entrenamiento: **0.65**
+- Conjunto de prueba: **0.65**
+  
+**Análisis del Desempeño del Modelo:**
+Los resultados muestran que el modelo tiene un rendimiento consistente entre los datos de entrenamiento y prueba, lo que indica que no está sobreajustando ni memorizando los datos. Sin embargo, persiste un problema significativo en la capacidad del modelo para identificar correctamente la clase 1 (los casos positivos). En esta ocasión, hemos obtenido métricas más bajas para la clase 1, con una precisión de 0.25 y un f1-score de 0.37, lo que sugiere que el modelo tiene dificultades para distinguir esta clase.
+
+Esto puede deberse a un desequilibrio en las clases o a una selección de variables que no está capturando bien las diferencias entre las clases. Como siguiente paso, optaremos por aplicar undersampling como técnica para balancear el conjunto de datos, lo que nos permitirá reducir la cantidad de ejemplos de la clase mayoritaria.
+
+### 6. `LogisticRegression` con balanceo de datos Undersampling
+
+![Captura de pantalla 2024-09-19 161506](https://github.com/user-attachments/assets/fe70a87c-b05c-49cf-a509-cdcb86a0c5fc)
+
 
 .**Exactitud del Modelo:**
 - Conjunto de entrenamiento: **0.74**
 - Conjunto de prueba: **0.65**
 
 **Análisis del Desempeño del Modelo:**
-Este modelo sigue presentando problemas de sobreajuste, lo que indica que el modelo no se ajusta bien a los datos de prueba. Aunque el conjunto de entrenamiento alcanza una exactitud del 74%, en el conjunto de prueba la precisión baja al 65%. Esto sugiere que el modelo podría no estar generalizando bien y podría estar sobreentrenado para los datos balanceados con undersampling.
+Este modelo muestra resultados mixtos. Aunque la precisión y el recall para la clase 1 (los casos positivos) son relativamente buenos, con valores de 0.64 y 0.69 respectivamente, también indica que el modelo podría estar enfrentando problemas de generalización. La exactitud en el conjunto de entrenamiento es del 74%, mientras que en el conjunto de prueba se reduce al 65%. Esta diferencia sugiere que el modelo puede no estar generalizando adecuadamente y podría estar ajustado en exceso a los datos de entrenamiento.
+
+A pesar de que las métricas para la clase que intentamos predecir (clase 1) son más favorables, la discrepancia entre el rendimiento en los datos de entrenamiento y prueba plantea dudas sobre la confiabilidad del modelo con datos desconocidos. Por lo tanto, es importante considerar ajustes adicionales, como la revisión de las variables seleccionada.
 
 ---
 
-### 5. LogisticRegression con balanceo tipo undersampling con variables seleccionadas  de DecisionTreeClassifie
+### 7. LogisticRegression con balanceo tipo undersampling con variables seleccionadas 
+
+![Captura de pantalla 2024-09-19 161928](https://github.com/user-attachments/assets/8f26d403-b698-4daa-9e28-512fee851386)
 
 
-![Captura de pantalla](https://github.com/user-attachments/assets/c0521eb5-57d3-4015-aaf3-b75b97201deb)
+.**Exactitud del Modelo:**
+- Conjunto de entrenamiento: **0.66**
+- Conjunto de prueba: **0.62**
 
-**Puntuaciones de Validación Cruzada:**
-- [0.63926499, 0.84526112, 0.86363636, 0.83639884, 0.84511133]
-- **Exactitud media de validación cruzada:** 0.81
   
 **Análisis del Desempeño del Modelo:**
-Este modelo muestra una exactitud consistente del **81%** tanto en el conjunto de entrenamiento como en el conjunto de prueba, lo que indica que no está sobreajustado y generaliza bien. Sin embargo, aunque el modelo tiene un buen rendimiento global, sigue presentando dificultades para predecir correctamente la clase minoritaria (empleados que han renunciado).
+La exactitud del modelo en el conjunto de prueba es del 62%, lo que indica un rendimiento moderadamente bueno. Aunque existe una ligera caída de exactitud en comparación con el conjunto de entrenamiento, la diferencia no es excesiva, lo que sugiere que el modelo generaliza de forma razonable y no está sobreajustado
 
-- **Precisión para la clase 1:** 0.41
-- **Recall para la clase 1:** 0.46
-
-Esto significa que, aunque el modelo tiene buen rendimiento global, no es efectivo para identificar empleados que han renunciado (clase 1). Solo el **41%** de las predicciones de renuncia son correctas, y de todos los empleados que efectivamente renunciaron, solo el **46%** fueron identificados correctamente.
+**2. Rendimiento por clase:**
+* Clase 0 (Precisión: 0.63, Recall: 0.58, F1-score: 0.61)
+* Clase 1 (Precisión: 0.61, Recall: 0.65, F1-score: 0.63)
+  
+El modelo tiene un desempeño balanceado entre las clases, con F1-scores de 0.61 y 0.63 para las clases 0 y 1, respectivamente. Esto muestra que el modelo tiene una capacidad similar para clasificar correctamente ambas clases, lo que es crucial para evitar sesgos significativos hacia alguna de las clases.
 
 **Conclusión:**
-A pesar de que la técnica SMOTE ha mejorado la capacidad del modelo para generalizar, todavía queda margen para mejorar la identificación de la clase minoritaria.
+En resumen, este modelo ofrece un rendimiento sólido con un balance adecuado entre las clases, lo que lo convierte en una opción viable para su implementación final. Aunque hay áreas donde se podría mejorar la precisión y sensibilidad, el modelo es lo suficientemente robusto para cumplir con los requisitos actuales, ofreciendo una base confiable sobre la cual se podrían realizar optimizaciones futuras.
