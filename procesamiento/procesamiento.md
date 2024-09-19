@@ -390,11 +390,11 @@ Se omitieron para el analisis las siguientes variables debido a su debil correla
 
 
 
-Con las variables listas empezaremos la [técnica de análisis](https://github.com/Maria-Data-Analyst/RRHH_Machine_Learning-/blob/Consultas-Query/Tecnica_analisis/machine_learning.md)
+Con las variables listas empezaremos la [Técnicas de análisis](https://github.com/Maria-Data-Analyst/RRHH_Machine_Learning-/blob/main/Tecnica_analisis/machine_learning.md)
 
 Para ver todo el procesamiento y gráficas puede consultar el siguiente [NoteBook](https://github.com/Maria-Data-Analyst/RRHH_Machine_Learning-/blob/main/procesamiento/procesamiento_rrhh.ipynb)
 
-[Técnicas de análisis](https://github.com/Maria-Data-Analyst/RRHH_Machine_Learning-/blob/main/Tecnica_analisis/machine_learning.md)
+
     
      
         
