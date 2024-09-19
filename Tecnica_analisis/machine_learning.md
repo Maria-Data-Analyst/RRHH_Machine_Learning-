@@ -87,13 +87,10 @@ Tras ajustar los parámetros del árbol de decisión, los resultados obtenidos s
 1. **Reducción del Sobreajuste:**
    - **Exactitud en Entrenamiento vs. Prueba:** La exactitud en el conjunto de entrenamiento ha disminuido a 0.86, mientras que en el conjunto de prueba es 0.73. Aunque esto indica una reducción en el sobreajuste comparado con el modelo anterior, donde la exactitud de entrenamiento era del 100%, la diferencia aún es notable. El modelo sigue teniendo un desempeño mucho mejor en los datos de entrenamiento que en los de prueba.
 
-2. **Desempeño en el Conjunto de Prueba:**
-   - **Exactitud y Métricas:** La exactitud de 0.73 en el conjunto de prueba muestra una mejora en comparación con el modelo anterior, pero sigue siendo una señal de que el modelo podría no estar generalizando de manera óptima. Las métricas de precisión y recall para ambas clases están relativamente equilibradas, pero no sobresalientes, lo que sugiere que el modelo podría no ser suficientemente robusto.
-
-3. **Validación Cruzada:**
+2. **Validación Cruzada:**
    - **Consistencia del Modelo:** Las puntuaciones de validación cruzada varían entre 0.69 y 0.71, con una media de 0.71. Aunque esto indica cierta consistencia en el rendimiento, la diferencia con la exactitud en el conjunto de prueba muestra que aún podría haber problemas con la capacidad de generalización del modelo.
 
-4. **Evaluación General:**
+3. **Evaluación General:**
    - **Generalización:** Aunque hemos reducido el sobreajuste, el modelo todavía muestra un desempeño inferior en datos no vistos. Esto sugiere que el modelo puede tener dificultades para generalizar adecuadamente a datos nuevos, y su desempeño en un entorno real podría no ser confiable.
 
 
