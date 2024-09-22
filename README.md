@@ -46,7 +46,7 @@ Este proyecto se centra en la aplicación de un modelo de machine learning super
      
 </details>
 
-* [**Presentación**](https://docs.google.com/presentation/d/1cDMneL7eKBrhgwDIdBpOPCKwlxaE3G1_UiqOo-2WpOc/edit?usp=sharing)
+* [**Presentación**](https://docs.google.com/presentation/d/1N8CyGMZEqM0x2d-FQV4HIDuzDcZuWPwII8h33WmIpQo/edit?usp=sharing) : Resultados y conclusiones 
   
 
 
