@@ -42,7 +42,7 @@ Este proyecto se centra en la aplicación de un modelo de machine learning super
      - [Hito 3](https://github.com/Maria-Data-Analyst/Proyecto-Validacion-Hipotesis/blob/main/Tecnica-Analisis/regresion_lineal.md)
        
   3. [**hitos 2 y 3 del Proyecto 3**](https://github.com/Maria-Data-Analyst/riesgo_relativo)
-     - De este proyecto ya había entregado todos los hitos y me habían dado feedback por escrito  
+    
      
 </details>
 
