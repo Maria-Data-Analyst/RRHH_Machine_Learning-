@@ -18,7 +18,7 @@ Este proyecto se centra en la aplicación de un modelo de machine learning super
   <summary>Ficha Técnica</summary>
     Toma de decisiones y conclusiones
   
-  1. [**Procesamiento y Preparación de la Base de Datos**](https://github.com/Maria-Data-Analyst/RRHH_Machine_Learning-/blob/Consultas-Query/procesamiento.md)
+  1. [**Procesamiento y Preparación de la Base de Datos**](https://github.com/Maria-Data-Analyst/RRHH_Machine_Learning-/blob/main/procesamiento/procesamiento.md)
      
      
   2.  [**Técnica de análisis**](https://github.com/Maria-Data-Analyst/RRHH_Machine_Learning-/blob/Consultas-Query/Tecnica_analisis/machine_learning.md)
